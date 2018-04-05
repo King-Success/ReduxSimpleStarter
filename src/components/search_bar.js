@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 
-
-
-
 class SearchBar extends Component {
   constructor(props){
       super(props);
@@ -12,12 +9,14 @@ class SearchBar extends Component {
   render() {
     return (
     <div>
-      <input onChange={event => this.setState({term: event.target.value})}/>
-      The input is : {this.state.term}
+      <input 
+      value={this.state.term}
+      onChange={event => this.setState({term: event.target.value})}/>
+      This value is: {this.state.term}
     </div>
     );
   } 
 }
 
 
-export default SearchBar;
+export default SearchBar; 

@@ -1,15 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDom from 'react-dom';
-
+import YTSearch from 'youtube-api-search';
 import SearchBar from './components/search_bar';
 
 const API_KEY = 'AIzaSyBCXy-hMWhi6tyMdiOSywy3WLc_BSOpmiA';
 
-//Create a new component, this component should generate some HTML
-const App = () => {
-  return (<div>
+class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {Videos: []};
+    YTSearch({key: API_KEY, term: 'github'}, function(Videos){
+      this.setState({Videos});
+    });
+  }
+  
+  render(){
+    return (<div>
             <SearchBar />
           </div>);
+  }
+  
 }
-//Take this generated HTML and output it into the browser (In the DOM)
 ReactDom.render(<App />, document.querySelector('.container'));
